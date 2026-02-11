@@ -15,6 +15,29 @@ enum custom_keycodes {
   NAVIGATOR_AIM
 };
 
+const custom_shift_key_t custom_shift_keys[] = {
+  {KC_DOT , KC_EXLM}, // shift . is !
+  {KC_COMM, KC_QUES}, // shift , is ?
+					  
+  {KC_EQL, KC_EQL }, // shift = is =
+  {KC_COLN, KC_SCLN}, // shift : is ; 
+  
+  {KC_LABK,	KC_LBRC}, // shift < is [
+  {KC_RABK,	KC_RBRC}, // shift > is ]
+
+  {KC_LPRN, KC_LCBR}, // shift ( is {
+  {KC_RPRN, KC_RCBR}, // shift ) is }
+
+  {KC_MINS, KC_PLUS}, // shift - is +
+  {KC_SLSH, KC_ASTR}, // shift / is *
+  {KC_PERC, KC_CIRC}, // shift % is ^
+
+  {KC_AMPR, KC_AMPR}, // shift & is &
+  {KC_PIPE, KC_PIPE}, // shift | is |
+
+  {KC_GRV,  KC_GRV} // shift ` is `
+};
+
 
 
 #define DUAL_FUNC_0 LT(4, KC_Z)
