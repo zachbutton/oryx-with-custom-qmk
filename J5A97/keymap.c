@@ -17,14 +17,14 @@ enum custom_keycodes {
 
 
 
-#define DUAL_FUNC_0 LT(2, KC_W)
-#define DUAL_FUNC_1 LT(6, KC_M)
+#define DUAL_FUNC_0 LT(4, KC_F19)
+#define DUAL_FUNC_1 LT(7, KC_F22)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_QUOTE,       KC_COMMA,       KC_DOT,         KC_P,           KC_Y,                                           KC_F,           KC_G,           KC_C,           KC_R,           KC_L,           KC_SLASH,       
     KC_GRAVE,       KC_A,           MT(MOD_LALT, KC_O),MT(MOD_LGUI, KC_E),MT(MOD_LCTL, KC_U),KC_I,                                           KC_D,           MT(MOD_RCTL, KC_H),MT(MOD_RGUI, KC_T),MT(MOD_RALT, KC_N),KC_S,           KC_MINUS,       
-    KC_TRANSPARENT, KC_COLN,        KC_Q,           KC_J,           KC_K,           KC_X,                                           KC_B,           KC_M,           KC_W,           KC_V,           KC_Z,           KC_PERC,        
+    MO(2),          KC_COLN,        KC_Q,           KC_J,           KC_K,           KC_X,                                           KC_B,           KC_M,           KC_W,           KC_V,           KC_Z,           KC_PERC,        
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_UNDS,        KC_TRANSPARENT, LALT(LCTL(KC_LEFT_GUI)),                                RALT(RCTL(KC_RIGHT_GUI)),KC_TRANSPARENT, KC_ESCAPE,      KC_TRANSPARENT, KC_TRANSPARENT, OSL(3),         
                                                     MT(MOD_LSFT, KC_ENTER),LT(1, KC_TAB),                                  LT(2, KC_BSPC), MT(MOD_RSFT, KC_SPACE)
   ),
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [2] = LAYOUT_voyager(
     KC_NO,          KC_NO,          KC_MS_BTN4,     KC_MS_BTN3,     KC_MS_BTN5,     NAVIGATOR_INC_CPI,                                KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         KC_NO,          QK_BOOT,        
     KC_NO,          KC_NO,          KC_MS_BTN2,     DRAG_SCROLL,    KC_MS_BTN1,     NAVIGATOR_TURBO,                                KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_NO,          KC_NO,          
-    KC_NO,          KC_NO,          KC_NO,          TOGGLE_SCROLL,  KC_NO,          NAVIGATOR_DEC_CPI,                                KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_NO,          KC_TRANSPARENT, 
+    KC_NO,          KC_NO,          KC_NO,          TOGGLE_SCROLL,  KC_NO,          NAVIGATOR_DEC_CPI,                                KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_NO,          KC_NO,          
     KC_TRANSPARENT, TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_SLD,        RGB_VAD,        RGB_VAI,                                        KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_TRANSPARENT, KC_MS_JIGGLER_TOGGLE,
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
@@ -143,6 +143,24 @@ bool rgb_matrix_indicators_user(void) {
 extern bool set_scrolling;
 extern bool navigator_turbo;
 extern bool navigator_aim;
+void pointing_device_init_user(void) {
+  set_auto_mouse_enable(true);
+}
+
+bool is_mouse_record_user(uint16_t keycode, keyrecord_t* record) {
+  // Treat all keys as mouse keys when in the automouse layer so that any key set resets the timeout without leaving the layer.
+  if (!layer_state_is(AUTO_MOUSE_TARGET_LAYER)){
+    // When depressing a mouse key with a LT key at the same time, the mouse key tracker is not decremented.
+    // This is a workaround to fix that
+    if (IS_MOUSE_KEYCODE(keycode) && !record->event.pressed) {
+      return true;
+    }
+    return false;
+  }
+  else {
+    return true;
+  }
+}
 
 
 
