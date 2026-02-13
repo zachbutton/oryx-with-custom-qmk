@@ -16,8 +16,8 @@ enum custom_keycodes {
 
 
 
-#define DUAL_FUNC_0 LT(4, KC_X)
-#define DUAL_FUNC_1 LT(6, KC_F7)
+#define DUAL_FUNC_0 LT(8, KC_I)
+#define DUAL_FUNC_1 LT(8, KC_F8)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -35,9 +35,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [2] = LAYOUT_voyager(
-    KC_NO,          KC_NO,          KC_MS_BTN4,     NAVIGATOR_INC_CPI,KC_MS_BTN5,     KC_NO,                                          KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         KC_NO,          QK_BOOT,        
-    KC_NO,          KC_NO,          KC_NO,          DRAG_SCROLL,    NAVIGATOR_TURBO,KC_NO,                                          KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_NO,          KC_NO,          
-    KC_NO,          KC_NO,          KC_NO,          NAVIGATOR_DEC_CPI,KC_NO,          KC_NO,                                          KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_NO,          KC_NO,          
+    KC_NO,          KC_NO,          KC_MS_BTN4,     NAVIGATOR_INC_CPI,KC_MS_BTN5,     KC_LEFT_GUI,                                    KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         KC_NO,          QK_BOOT,        
+    KC_NO,          KC_NO,          TO(0),          DRAG_SCROLL,    NAVIGATOR_TURBO,KC_LEFT_CTRL,                                   KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_NO,          KC_NO,          
+    KC_NO,          KC_NO,          KC_NO,          NAVIGATOR_DEC_CPI,KC_LEFT_SHIFT,  KC_RIGHT_ALT,                                   KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_NO,          KC_NO,          
     KC_TRANSPARENT, TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_VAD,        RGB_VAI,        KC_MS_BTN3,                                     KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_TRANSPARENT, KC_MS_JIGGLER_TOGGLE,
                                                     KC_MS_BTN1,     KC_MS_BTN2,                                     KC_TRANSPARENT, KC_TRANSPARENT
   ),
@@ -58,12 +58,10 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
-const uint16_t PROGMEM combo0[] = { LT(1, KC_TAB), LT(2, KC_BSPC), COMBO_END};
-const uint16_t PROGMEM combo1[] = { MT(MOD_LSFT, KC_ENTER), MT(MOD_RSFT, KC_SPACE), COMBO_END};
+const uint16_t PROGMEM combo0[] = { MT(MOD_LSFT, KC_ENTER), MT(MOD_RSFT, KC_SPACE), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_ESCAPE),
-    COMBO(combo1, KC_COLN),
 };
 
 
@@ -81,8 +79,6 @@ void keyboard_post_init_user(void) {
 }
 
 const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
-    [0] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
-
     [1] = { {0,0,0}, {200,218,204}, {163,218,204}, {163,218,204}, {86,218,204}, {0,0,0}, {200,218,204}, {0,0,0}, {86,218,204}, {86,218,204}, {86,218,204}, {43,218,204}, {86,218,204}, {163,218,204}, {0,0,0}, {0,218,204}, {0,218,204}, {43,218,204}, {0,0,0}, {0,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {200,218,204}, {163,218,204}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {200,218,204}, {163,218,204}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {200,218,204}, {0,0,0}, {163,218,204}, {0,0,255}, {86,218,204}, {28,218,204}, {0,0,0}, {0,0,0}, {0,0,0} },
 
     [2] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,0}, {190,218,204}, {190,218,204}, {140,218,204}, {190,218,204}, {0,0,0}, {0,0,0}, {190,218,204}, {140,218,204}, {140,218,204}, {140,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {43,218,204}, {43,218,204}, {43,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {88,218,204}, {88,218,204}, {88,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
@@ -113,9 +109,6 @@ bool rgb_matrix_indicators_user(void) {
   }
   if (!keyboard_config.disable_layer_led) { 
     switch (biton32(layer_state)) {
-      case 0:
-        set_layer_color(0);
-        break;
       case 1:
         set_layer_color(1);
         break;
@@ -147,18 +140,8 @@ void pointing_device_init_user(void) {
 }
 
 bool is_mouse_record_user(uint16_t keycode, keyrecord_t* record) {
-  // Treat all keys as mouse keys when in the automouse layer so that any key set resets the timeout without leaving the layer.
-  if (!layer_state_is(AUTO_MOUSE_TARGET_LAYER)){
-    // When depressing a mouse key with a LT key at the same time, the mouse key tracker is not decremented.
-    // This is a workaround to fix that
-    if (IS_MOUSE_KEYCODE(keycode) && !record->event.pressed) {
-      return true;
-    }
-    return false;
-  }
-  else {
-    return true;
-  }
+  // All keys are not mouse keys when one shot auto mouse is enabled.
+  return false;
 }
 
 
