@@ -8,7 +8,6 @@
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
   DRAG_SCROLL,
-  TOGGLE_SCROLL,
   NAVIGATOR_INC_CPI,
   NAVIGATOR_DEC_CPI,
   NAVIGATOR_TURBO,
@@ -40,8 +39,8 @@ const custom_shift_key_t custom_shift_keys[] = {
 
 
 
-#define DUAL_FUNC_0 LT(4, KC_F19)
-#define DUAL_FUNC_1 LT(7, KC_F22)
+#define DUAL_FUNC_0 LT(4, KC_X)
+#define DUAL_FUNC_1 LT(6, KC_F7)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -59,11 +58,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [2] = LAYOUT_voyager(
-    KC_NO,          KC_NO,          KC_MS_BTN4,     KC_MS_BTN3,     KC_MS_BTN5,     NAVIGATOR_INC_CPI,                                KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         KC_NO,          QK_BOOT,        
-    KC_NO,          KC_NO,          KC_MS_BTN2,     DRAG_SCROLL,    KC_MS_BTN1,     NAVIGATOR_TURBO,                                KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_NO,          KC_NO,          
-    KC_NO,          KC_NO,          KC_NO,          TOGGLE_SCROLL,  KC_NO,          NAVIGATOR_DEC_CPI,                                KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_NO,          KC_NO,          
-    KC_TRANSPARENT, TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_SLD,        RGB_VAD,        RGB_VAI,                                        KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_TRANSPARENT, KC_MS_JIGGLER_TOGGLE,
-                                                    KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
+    KC_NO,          KC_NO,          KC_MS_BTN4,     NAVIGATOR_INC_CPI,KC_MS_BTN5,     KC_NO,                                          KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         KC_NO,          QK_BOOT,        
+    KC_NO,          KC_NO,          KC_NO,          DRAG_SCROLL,    NAVIGATOR_TURBO,KC_NO,                                          KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_NO,          KC_NO,          
+    KC_NO,          KC_NO,          KC_NO,          NAVIGATOR_DEC_CPI,KC_NO,          KC_NO,                                          KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_NO,          KC_NO,          
+    KC_TRANSPARENT, TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_VAD,        RGB_VAI,        KC_MS_BTN3,                                     KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_TRANSPARENT, KC_MS_JIGGLER_TOGGLE,
+                                                    KC_MS_BTN1,     KC_MS_BTN2,                                     KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [3] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         
@@ -109,7 +108,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
 
     [1] = { {0,0,0}, {200,218,204}, {163,218,204}, {163,218,204}, {86,218,204}, {0,0,0}, {200,218,204}, {0,0,0}, {86,218,204}, {86,218,204}, {86,218,204}, {43,218,204}, {86,218,204}, {163,218,204}, {0,0,0}, {0,218,204}, {0,218,204}, {43,218,204}, {0,0,0}, {0,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {200,218,204}, {163,218,204}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {200,218,204}, {163,218,204}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {200,218,204}, {0,0,0}, {163,218,204}, {0,0,255}, {86,218,204}, {28,218,204}, {0,0,0}, {0,0,0}, {0,0,0} },
 
-    [2] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {190,218,204}, {190,218,204}, {140,218,204}, {190,218,204}, {0,0,0}, {0,0,0}, {190,218,204}, {140,218,204}, {140,218,204}, {140,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {43,218,204}, {43,218,204}, {43,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {88,218,204}, {88,218,204}, {88,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+    [2] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,0}, {190,218,204}, {190,218,204}, {140,218,204}, {190,218,204}, {0,0,0}, {0,0,0}, {190,218,204}, {140,218,204}, {140,218,204}, {140,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {43,218,204}, {43,218,204}, {43,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {88,218,204}, {88,218,204}, {88,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
 
     [3] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,255}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
 
@@ -244,12 +243,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         set_scrolling = false;
       }
       return false;
-    case TOGGLE_SCROLL:
-      if (record->event.pressed) {
-        set_scrolling = !set_scrolling;
-      }
-      return false;
-    break;
   case NAVIGATOR_TURBO:
     if (record->event.pressed) {
       navigator_turbo = true;
