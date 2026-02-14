@@ -16,14 +16,15 @@ enum custom_keycodes {
 
 
 
-#define DUAL_FUNC_0 LT(10, KC_6)
-#define DUAL_FUNC_1 LT(8, KC_5)
+#define DUAL_FUNC_0 LT(3, KC_E)
+#define DUAL_FUNC_1 LT(5, KC_2)
+#define DUAL_FUNC_2 LT(8, KC_7)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_QUOTE,       KC_COMMA,       KC_DOT,         KC_P,           KC_Y,                                           KC_F,           KC_G,           KC_C,           KC_R,           KC_L,           KC_SLASH,       
     KC_GRAVE,       LT(2, KC_A),    MT(MOD_LALT, KC_O),MT(MOD_LGUI, KC_E),MT(MOD_LCTL, KC_U),KC_I,                                           KC_D,           MT(MOD_RCTL, KC_H),MT(MOD_RGUI, KC_T),MT(MOD_RALT, KC_N),KC_S,           KC_MINUS,       
-    MO(2),          KC_COLN,        KC_Q,           KC_J,           KC_K,           KC_X,                                           KC_B,           KC_M,           KC_W,           KC_V,           KC_Z,           KC_PERC,        
+    KC_TRANSPARENT, KC_COLN,        KC_Q,           KC_J,           KC_K,           KC_X,                                           KC_B,           KC_M,           KC_W,           KC_V,           KC_Z,           KC_PERC,        
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_UNDS,        KC_TRANSPARENT, LALT(LCTL(KC_LEFT_GUI)),                                RALT(RCTL(KC_RIGHT_GUI)),KC_TRANSPARENT, KC_ESCAPE,      KC_TRANSPARENT, KC_TRANSPARENT, OSL(3),         
                                                     MT(MOD_LSFT, KC_ENTER),LT(1, KC_TAB),                                  LT(2, KC_BSPC), MT(MOD_RSFT, KC_SPACE)
   ),
@@ -36,16 +37,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [2] = LAYOUT_voyager(
     KC_NO,          KC_NO,          KC_MS_BTN4,     NAVIGATOR_INC_CPI,KC_MS_BTN5,     KC_LEFT_GUI,                                    KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         KC_NO,          QK_BOOT,        
-    KC_NO,          KC_NO,          KC_NO,          DRAG_SCROLL,    NAVIGATOR_TURBO,KC_LEFT_CTRL,                                   KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_NO,          KC_NO,          
-    KC_NO,          KC_NO,          KC_NO,          NAVIGATOR_DEC_CPI,KC_LEFT_SHIFT,  KC_RIGHT_ALT,                                   KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_NO,          KC_NO,          
-    KC_TRANSPARENT, TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_VAD,        RGB_VAI,        KC_MS_BTN3,                                     KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_TRANSPARENT, KC_MS_JIGGLER_TOGGLE,
-                                                    KC_MS_BTN1,     KC_MS_BTN2,                                     KC_TRANSPARENT, KC_TRANSPARENT
+    KC_NO,          KC_NO,          KC_NO,          DRAG_SCROLL,    NAVIGATOR_TURBO,DUAL_FUNC_0,                                    KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_NO,          KC_NO,          
+    KC_NO,          KC_NO,          KC_NO,          NAVIGATOR_DEC_CPI,KC_LEFT_SHIFT,  KC_RIGHT_ALT,                                   KC_NO,          KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_NO,          KC_NO,          
+    KC_NO,          TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_VAD,        RGB_VAI,        KC_MS_BTN3,                                     KC_NO,          KC_AUDIO_MUTE,  KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_NO,          KC_MS_JIGGLER_TOGGLE,
+                                                    KC_MS_BTN1,     KC_MS_BTN2,                                     KC_NO,          KC_NO
   ),
   [3] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F4,          KC_F5,          KC_F6,          KC_TRANSPARENT, KC_F12,         
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F1,          KC_F2,          KC_F3,          KC_TRANSPARENT, KC_ENTER,       
-    DUAL_FUNC_0,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, TO(0),          KC_TRANSPARENT, KC_TRANSPARENT, DUAL_FUNC_1,    
+    DUAL_FUNC_1,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, TO(0),          KC_TRANSPARENT, KC_TRANSPARENT, DUAL_FUNC_2,    
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
 };
@@ -59,9 +60,11 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
 );
 
 const uint16_t PROGMEM combo0[] = { MT(MOD_LSFT, KC_ENTER), MT(MOD_RSFT, KC_SPACE), COMBO_END};
+const uint16_t PROGMEM combo1[] = { MT(MOD_LCTL, KC_U), MT(MOD_LSFT, KC_ENTER), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_ESCAPE),
+    COMBO(combo1, TO(2)),
 };
 
 
@@ -167,13 +170,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       } else {
         if (record->event.pressed) {
+          register_code16(KC_LEFT_CTRL);
+        } else {
+          unregister_code16(KC_LEFT_CTRL);
+        }  
+      }  
+      return false;
+    case DUAL_FUNC_1:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          layer_move(0);
+        } else {
+          layer_move(0);
+        }
+      } else {
+        if (record->event.pressed) {
           register_code16(KC_LEFT_SHIFT);
         } else {
           unregister_code16(KC_LEFT_SHIFT);
         }  
       }  
       return false;
-    case DUAL_FUNC_1:
+    case DUAL_FUNC_2:
       if (record->tap.count > 0) {
         if (record->event.pressed) {
           layer_move(0);
