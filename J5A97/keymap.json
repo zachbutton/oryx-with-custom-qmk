@@ -2,6 +2,7 @@
     "modules": [
         "zsa/oryx",
         "zsa/mousejiggler",
+        "zsa/automouse",
         "zsa/defaults"
     ]
 }
