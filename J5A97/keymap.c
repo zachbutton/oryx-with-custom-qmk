@@ -11,8 +11,8 @@ enum custom_keycodes {
 
 
 
-#define DUAL_FUNC_0 LT(6, KC_F23)
-#define DUAL_FUNC_1 LT(15, KC_F9)
+#define DUAL_FUNC_0 LT(8, KC_F11)
+#define DUAL_FUNC_1 LT(9, KC_5)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -30,9 +30,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [2] = LAYOUT_voyager(
-    KC_NO,          KC_LEFT_GUI,    KC_MS_BTN4,     KC_MS_BTN3,     KC_MS_BTN5,     KC_LEFT_CTRL,                                   KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         KC_NO,          QK_BOOT,        
+    KC_NO,          KC_LEFT_GUI,    KC_MS_BTN4,     KC_MS_BTN3,     KC_MS_BTN5,     KC_LEFT_GUI,                                    KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         KC_NO,          QK_BOOT,        
     NAVIGATOR_INC_CPI,KC_LEFT_CTRL,   KC_MS_BTN2,     DRAG_SCROLL,    KC_MS_BTN1,     KC_LEFT_CTRL,                                   KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_NO,          KC_NO,          
-    NAVIGATOR_DEC_CPI,KC_RIGHT_ALT,   KC_LEFT_SHIFT,  NAVIGATOR_TURBO,KC_LEFT_SHIFT,  KC_RIGHT_ALT,                                   KC_NO,          KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_NO,          KC_NO,          
+    NAVIGATOR_DEC_CPI,KC_LEFT_ALT,    KC_LEFT_SHIFT,  NAVIGATOR_TURBO,KC_LEFT_SHIFT,  KC_LEFT_ALT,                                    KC_NO,          KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_NO,          KC_NO,          
     KC_NO,          TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_VAD,        RGB_VAI,        KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_NO,          KC_MS_JIGGLER_TOGGLE,
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
@@ -54,11 +54,9 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
 );
 
 const uint16_t PROGMEM combo0[] = { MT(MOD_LSFT, KC_ENTER), MT(MOD_RSFT, KC_SPACE), COMBO_END};
-const uint16_t PROGMEM combo1[] = { MT(MOD_LCTL, KC_U), MT(MOD_LSFT, KC_ENTER), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_ESCAPE),
-    COMBO(combo1, TO(2)),
 };
 
 
