@@ -1,10 +1,9 @@
 {
-    "modules": [
-        "zsa/oryx",
-        "zsa/mousejiggler",
-        "zsa/navigator_trackball",
-        "zsa/automouse",
-        "zsa/defaults",
-        "getreuer/custom_shift_keys"
-    ]
+	"modules": [
+		"zsa/oryx",
+		"zsa/mousejiggler",
+		"zsa/navigator_trackball",
+		"zsa/defaults",
+		"getreuer/custom_shift_keys"
+	]
 }
